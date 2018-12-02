@@ -1,0 +1,20 @@
+{
+    "name": "jmichaelward/phpractice",
+    "description": "Project to practice PHP development.",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Jeremy Ward",
+            "email": "jeremy@jmichaelward.com"
+        }
+    ],
+    "require": {
+        "symfony/dotenv": "^4.2",
+        "pimple/pimple": "^3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "JMW\\PHPractice\\": "src/"
+        }
+    }
+}
