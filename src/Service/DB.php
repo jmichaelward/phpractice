@@ -11,6 +11,7 @@ namespace JMW\PHPractice\Service;
 
 use JMW\PHPractice\ServiceProvider;
 use Pimple\Container;
+use Symfony\Component\Dotenv\Exception\PathException;
 
 /**
  * Class DB
@@ -109,7 +110,11 @@ class DB extends ServiceProvider
      */
     private function connect()
     {
-        $this->connection = new \PDO($this->dsn, $this->user, $this->pass);
+        try {
+            $this->connection = new \PDO($this->dsn, $this->user, $this->pass);
+        } catch (\Exception $exception) {
+            die("We can't seem to find a valid database connection.");
+        }
     }
 
     /**
