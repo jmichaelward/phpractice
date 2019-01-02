@@ -11,6 +11,7 @@ namespace JMW\PHPractice;
 
 use JMW\PHPractice\Service\DB;
 use JMW\PHPractice\Service\Environment;
+use JMW\PHPractice\Service\Router;
 use Pimple\Container;
 
 /**
@@ -35,6 +36,7 @@ class App
     private $services = [
         Environment::class,
         DB::class,
+        Router::class,
     ];
 
     /**
