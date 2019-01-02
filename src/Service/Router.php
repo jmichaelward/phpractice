@@ -67,7 +67,7 @@ class Router extends ServiceProvider
      */
     private function parseRoute()
     {
-        $requestUri = array_values(array_filter(explode('/', $_SERVER['REQUEST_URI'])));
+        $requestUri = array_values(array_filter(explode('/', $_SERVER['PHP_SELF'])));
 
         if (1 <= count($requestUri)) {
             return $requestUri[0];
