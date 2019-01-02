@@ -22,11 +22,19 @@ use Pimple\Container;
 class Router extends ServiceProvider
 {
     /**
+     * The path to our template files.
+     *
      * @var
      * @since 2019-01-01
      */
     private $viewPath;
 
+    /**
+     * Router constructor.
+     * @param Container $container
+     * @author Jeremy Ward <jeremy.ward@webdevstudios.com>
+     * @since 2019-01-01
+     */
     public function __construct(Container $container)
     {
         parent::__construct($container);
@@ -35,6 +43,8 @@ class Router extends ServiceProvider
     }
 
     /**
+     * Run the routing service.
+     *
      * @author Jeremy Ward <jeremy.ward@webdevstudios.com>
      * @since 2019-01-01
      * @return void
@@ -47,9 +57,13 @@ class Router extends ServiceProvider
     }
 
     /**
+     * Parse the route from the request.
+     *
+     * @TODO This corresponds 1:1 with a view file. In reality, a controller should and will eventually act as an intermediary.
+     *
      * @author Jeremy Ward <jeremy.ward@webdevstudios.com>
      * @since 2019-01-01
-     * @return
+     * @return string
      */
     private function parseRoute()
     {
@@ -63,6 +77,8 @@ class Router extends ServiceProvider
     }
 
     /**
+     * Load a view on page request.
+     *
      * @param string $file
      * @author Jeremy Ward <jeremy.ward@webdevstudios.com>
      * @since 2019-01-01
@@ -81,6 +97,8 @@ class Router extends ServiceProvider
     }
 
     /**
+     * Load a 404 template if we can't find a view.
+     *
      * @author Jeremy Ward <jeremy.ward@webdevstudios.com>
      * @since 2019-01-01
      * @return void
