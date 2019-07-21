@@ -9,6 +9,8 @@
 
 namespace JMW\PHPractice\Service;
 
+use JMW\PHPractice\Controller\HomeController;
+use JMW\PHPractice\Controller\UserController;
 use JMW\PHPractice\ServiceProvider;
 use Pimple\Container;
 
@@ -28,6 +30,15 @@ class Router extends ServiceProvider
      * @since 2019-01-01
      */
     private $viewPath;
+
+    /**
+     * @var array
+     * @since 2019-01-01
+     */
+    private $controllers = [
+        'user' => UserController::class,
+        'home' => HomeController::class,
+    ];
 
     /**
      * Router constructor.
@@ -51,9 +62,7 @@ class Router extends ServiceProvider
      */
     public function run()
     {
-        $route = $this->parseRoute();
-
-        $this->load($route);
+        $this->load($this->parseRoute());
     }
 
     /**
@@ -79,16 +88,17 @@ class Router extends ServiceProvider
     /**
      * Load a view on page request.
      *
-     * @param string $file
+     * @param string $path
      * @author Jeremy Ward <jeremy.ward@webdevstudios.com>
      * @since 2019-01-01
      * @return void
      */
-    private function load(string $file)
+    private function load(string $path)
     {
-        $view = $this->viewPath . "{$file}.php";
+        $view = $this->viewPath . "{$path}.php";
 
-        if (is_readable($view)) {
+        if (array_key_exists($path, $this->controllers)) {
+            $controller = new $this->controllers[$path]($view);
             require_once $view;
             return;
         }
